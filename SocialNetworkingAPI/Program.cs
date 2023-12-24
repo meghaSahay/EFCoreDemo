@@ -1,3 +1,4 @@
+using Application;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -13,6 +14,11 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddMediatR
+(
+    cfg => cfg.RegisterServicesFromAssemblies(typeof(ListUsers.Handler).Assembly
+));
 
 var app = builder.Build();
 

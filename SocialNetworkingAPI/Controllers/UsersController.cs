@@ -3,27 +3,29 @@ using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using MediatR;
+using Application;
 
 namespace SocialNetworkingAPI.Controllers;
 
 public class UsersController : BaseApiController
 {
-    private readonly DataContext _context;
-    public UsersController(DataContext context)
+    private readonly IMediator _mediator;
+    public UsersController(IMediator mediator)
     {
-        _context = context;
+        _mediator = mediator;
         
     }
     [HttpGet]
     public async Task<ActionResult<List<User>>> GetUsers()
     {
-        return await _context.Users.ToListAsync();
+        return await _mediator.Send(new ListUsers.Query());
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<User>> GetUser(Guid id)
     {
-        return await _context.Users.FindAsync(id);
+        return Ok();
     }
         
 }
