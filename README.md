@@ -1,7 +1,7 @@
 This is a sample application based on clean architecture. The code is divided into three projects namely 
 
 - SocialNetworkingAPI as starter project containing controller code.
-- Domain project containg code for entity.
+- Domain project containing code for entity.
 - Persistence containing code for database migrations.
   
 1. This code is an end to end working web api. The application is SocialNetworkingAPI where I have made User as an entity.
